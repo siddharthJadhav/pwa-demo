@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pwa-demo';
+
+  update: boolean;
+
+  constructor(public updates: SwUpdate) {
+
+    updates.available.subscribe( () => {
+      this.update = true;
+    });
+  }
 }
