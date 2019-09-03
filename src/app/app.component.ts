@@ -14,7 +14,13 @@ export class AppComponent {
   constructor(public updates: SwUpdate) {
 
     updates.available.subscribe( () => {
-      this.update = true;
+      // this.update = true;
+
+      // Relaod the browser automatically when their is an update available
+      updates.activateUpdate().then(() => {
+        document.location.reload();
+      });
+
     });
   }
 }
